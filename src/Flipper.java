@@ -5,7 +5,7 @@ import javax.swing.Timer;
 
 public class Flipper extends Character {
 	int motionIndex = 0;
-	double angle = 0;
+	volatile double angle = 0;
 	public Flipper(int x , int y, int h, int e){
 		super(x,y,h,e,Type.FLIPPER);
 		Timer move = new Timer(64, a-> {
@@ -39,7 +39,7 @@ public class Flipper extends Character {
 		if(!inAir){
 		Thread jumping = new Thread(new Runnable(){
 			public void run(){
-				for(int index = 0; index < 40; index++){
+				for(int index = 0; index < 50; index++){
 					yVelo-=11;
 					try{
 						Thread.sleep(1);
@@ -47,17 +47,20 @@ public class Flipper extends Character {
 				}
 			}
 		});
-		jumping.start();
 		Thread rotate = new Thread(new Runnable(){
 			public void run(){
-				for(int index = 0; index < 1120; index++){
+				for(int index = 0; index < 720; index++){
 					angle += (Math.PI/360);
+					System.out.println(Math.toDegrees(angle));
 					try{
 						Thread.sleep(1);
 					}catch(Exception e) { } 
+					
 				}
+				angle = 0;
 			}
 		});
+		jumping.start();
 		rotate.start();
 		}
 	}

@@ -132,7 +132,11 @@ public class Screen extends JPanel implements Runnable {
 	}
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
+		drawBackDrop(g);
 		drawCharacters(g);
+	}
+	void drawBackDrop(Graphics g){
+		g.drawImage(Texture.city,0,0,screenWidth,screenHeight,null);
 	}
 	void drawCharacters(Graphics g){
 		for(int index = 0; index < sprites.size(); index++){
