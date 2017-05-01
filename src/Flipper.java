@@ -27,7 +27,11 @@ public class Flipper extends Character {
 		
 		if(inAir){
 			g2d.translate(x+width/2, y+height/2); 
+			if(d.equals(Direction.RIGHT)){
 			g2d.rotate(angle);
+			}else if(d.equals(Direction.LEFT)){
+				g2d.rotate(-angle);
+			}
 			g2d.drawImage(Texture.flipper[motionIndex], -width/2, -height/2, width, height, null);	
 		}else{
 			g2d.translate(0, 0);

@@ -13,6 +13,7 @@ public abstract class Character {
 	int width;
 	int height;
 	Type t;
+	Direction d;
 	boolean inAir;
 	public Character(int x, int y, int health, int energy, Type t){
 		this.x = x;
@@ -50,6 +51,11 @@ public abstract class Character {
 	}
 	 void setxVelo(int xVelo) {
 		this.xVelo = xVelo;
+		if(xVelo>0){
+			d = Direction.RIGHT;
+		}else if(xVelo<0){
+			d = Direction.LEFT;
+		}
 	}
 	 int getyVelo() {
 		return yVelo;
